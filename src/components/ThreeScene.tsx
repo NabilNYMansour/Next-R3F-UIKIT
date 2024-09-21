@@ -28,7 +28,7 @@ const thumbnailLink = "https://www.youtube.com/watch?v=cxdWPDXUodU&ab_channel=Na
 const contacts = [
   { link: "https://nabilmansour.com/", icon: "/nabil.png" },
   { link: "https://x.com/nabilnymansour", icon: "/twitter-x.png" },
-  { link: "https://github.com/NabilNYMansour", icon: "/github.png" },
+  { link: "https://github.com/NabilNYMansour/Next-R3F-UIKIT", icon: "/github.png" },
   { link: "https://buymeacoffee.com/nabilmansour", icon: "/coffee.png" }
 ]
 
