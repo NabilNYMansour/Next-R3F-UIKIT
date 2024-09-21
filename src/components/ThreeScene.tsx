@@ -5,6 +5,7 @@ import { Center, Environment, OrbitControls, Shadow, Text3D, useGLTF } from '@re
 import { Dispatch, SetStateAction, useEffect, useLayoutEffect, useState } from 'react';
 import { easing } from 'maath'
 import * as THREE from 'three';
+import dynamic from 'next/dynamic';
 // import * as UIKIT from '@react-three/uikit';
 const UIKIT = require('@react-three/uikit');
 
@@ -172,4 +173,16 @@ const ThreeScene = () => {
   );
 }
 
-export default ThreeScene;
+const ThreeSkeleton = () => {
+  return (
+    <div className='w-screen h-screen flex justify-center items-center text-4xl'>
+      Loading...
+    </div>
+  );
+}
+
+// For Next to not load server side
+export default dynamic(() => Promise.resolve(ThreeScene), {
+  ssr: false,
+  loading: () => <ThreeSkeleton />,
+});
