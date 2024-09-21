@@ -1,5 +1,5 @@
 # Next R3F UIKIT
-
+![Screenshot from 2024-09-21 12-23-19](https://github.com/user-attachments/assets/4ed442fc-8c95-49b1-865e-4291a683a98c)
 A demo project for using R3F UIKIT with Next.js
 
 ## Getting Started
