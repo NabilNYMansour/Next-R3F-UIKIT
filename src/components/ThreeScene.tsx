@@ -78,9 +78,6 @@ const IPhoneModel = ({ backgroundColor }: { backgroundColor: string }) => {
   useLayoutEffect(() => {
     scene.traverse((child: any) => {
       if (child.isMesh) {
-        child.castShadow = true;
-        child.receiveShadow = true;
-
         if (child.name === "Screen") {
           child.material = new THREE.MeshStandardMaterial({ map: texture, roughness: 0, color: backgroundColor });
           setScreenMaterial(child.material);
@@ -94,7 +91,7 @@ const IPhoneModel = ({ backgroundColor }: { backgroundColor: string }) => {
     resetMaterial();
   }, [backgroundColor]);
 
-  return <primitive object={scene} scale={0.5} castShadow />;
+  return <primitive object={scene} scale={0.5} />;
 }
 
 const UI = ({ backgroundColor, setBackgroundColor, writing, setWriting }:
@@ -146,13 +143,11 @@ const ThreeScene = () => {
   const [writing, setWriting] = useState("Hello UIKIT!");
 
   return (
-    <Canvas camera={{ position: [1, 1, 2] }}
-      shadows={{ enabled: true, type: THREE.PCFSoftShadowMap }}
-      frameloop="always" style={{ height: '100vh' }}>
-
+    <Canvas camera={{ position: [1, 1, 2] }} frameloop="always" style={{ height: '100vh' }}>
       <color attach="background" args={[backgroundColor]} />
       <CameraController />
       <Environment preset="city" />
+      <ambientLight intensity={0.5} />
 
       <Center top>
         <IPhoneModel backgroundColor={backgroundColor} />
@@ -166,9 +161,6 @@ const ThreeScene = () => {
           <meshStandardMaterial color={backgroundColor} />
         </Text3D>
       </Center>
-
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} intensity={0.5} castShadow />
 
       <Shadow
         color="black"
