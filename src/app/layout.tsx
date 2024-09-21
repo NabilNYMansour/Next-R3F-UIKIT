@@ -9,8 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Next R3F UIKIT",
-  description: "Next R3F UIKIT",
+  title: "Next r3f uikit",
+  description: "Next r3f uikit",
 };
 
 export default function RootLayout({
