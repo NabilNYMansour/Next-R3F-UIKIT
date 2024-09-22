@@ -51,6 +51,7 @@ const CameraController = () => {
     maxPolarAngle={0}
     minPolarAngle={Math.PI / 2}
     enableZoom={false}
+    enablePan={false}
   />;
 }
 const IPhoneModel = ({ backgroundColor }: { backgroundColor: string }) => {
