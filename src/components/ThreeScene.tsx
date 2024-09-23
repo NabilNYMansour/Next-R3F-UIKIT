@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame, useLoader } from '@react-three/fiber'
 import { Center, Environment, OrbitControls, Shadow, Text3D, useGLTF } from '@react-three/drei'
-import { Dispatch, SetStateAction, useEffect, useLayoutEffect, useState } from 'react';
+import { Dispatch, SetStateAction, Suspense, useEffect, useLayoutEffect, useState } from 'react';
 import { easing } from 'maath'
 import * as THREE from 'three';
 import dynamic from 'next/dynamic';
@@ -24,7 +24,7 @@ const possibleColors = [
   "#2F4F4F", // Dark Slate Gray
   "#FF4500", // Orange Red
 ];
-const thumbnailLink = "https://www.youtube.com/watch?v=cxdWPDXUodU&ab_channel=NabilMansour"
+const thumbnailLink = "https://youtu.be/3nsvwb0XNUk"
 const contacts = [
   { link: "https://nabilmansour.com/", icon: "/nabil.png" },
   { link: "https://x.com/nabilnymansour", icon: "/twitter-x.png" },
@@ -122,17 +122,22 @@ const UI = ({ backgroundColor, setBackgroundColor, writing, setWriting }:
             onValueChange={(value: string) => setWriting(value)} width={75} />
         </UIKIT.Container>
         <UIKIT.Container justifyContent="center" margin={5} gap={5} cursor='pointer'>
-          <UIKIT.Image src="/thumbnail.png" width={75} height={80} borderRadius={2} color="red"
-            borderColor="black" borderWidth={1} onClick={() => window.open(thumbnailLink, "_blank")}
-            hover={{ borderColor: "white" }} />
+          <Suspense fallback={<UIKIT.Text color="white" >Loading...</UIKIT.Text>}>
+            <UIKIT.SuspendingImage src="/thumbnail.png"
+              width={75} height={80} borderRadius={2} color="red"
+              borderColor="black" borderWidth={1} onClick={() => window.open(thumbnailLink, "_blank")}
+              hover={{ borderColor: "white" }} />
+          </Suspense>
         </UIKIT.Container>
         <UIKIT.Container justifyContent="center" alignItems="flex-end"
           width={75} height={20} margin={5} gap={5} cursor='pointer'>
-          {contacts.map((contact, index) => (
-            <UIKIT.Image key={index} src={contact.icon} width={15} height={15} borderRadius={2} color="red"
-              borderColor="black" borderWidth={1} onClick={() => window.open(contact.link, "_blank")}
-              hover={{ borderColor: "white" }} />
-          ))}
+          <Suspense fallback={<UIKIT.Text color="white" >Loading...</UIKIT.Text>}>
+            {contacts.map((contact, index) => (
+              <UIKIT.SuspendingImage key={index} src={contact.icon} width={15} height={15} borderRadius={2} color="red"
+                borderColor="black" borderWidth={1} onClick={() => window.open(contact.link, "_blank")}
+                hover={{ borderColor: "white" }} />
+            ))}
+          </Suspense>
         </UIKIT.Container>
       </UIKIT.Root>
     </group>
